@@ -1,0 +1,13 @@
+/.metadata/
+# Compiled Class Files
+*.class
+#Log Files
+*.log
+#Additional Files
+*.war
+*.lst
+*.properties
+*.xml
+*.jar
+.settings
+.project
