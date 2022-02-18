@@ -1,7 +1,8 @@
 package com.revature.wedding_therapy.web.servlet;
 
 import java.io.IOException;
-
+import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +50,12 @@ public class EmployeeServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.getWriter().write("<h1>Employee servlet is working</h1>");
+		System.out.print("\n\n\nEmployeeServlet:doGet\n\n\n");
+		PrintWriter writer = resp.getWriter();
+		List<Employee> employees = employeeService.getAllEmployees();
+		String payload = mapper.writeValueAsString(employees);
+		writer.write(payload);
+		resp.setStatus(200);
 	}
 
 }

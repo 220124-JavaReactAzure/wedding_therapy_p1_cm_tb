@@ -2,12 +2,14 @@ package com.revature.wedding_therapy.util;
 
 import java.io.IOException;
 import java.util.Properties;
-import com.revature.wedding_therapy.models.*;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
+
+import com.revature.wedding_therapy.models.Employee;
 
 public class HibernateUtil {
 

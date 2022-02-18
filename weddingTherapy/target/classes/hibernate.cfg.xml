@@ -8,7 +8,7 @@
      <session-factory>
 
      <!-- JDBC -->
-        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.username">postgress</property>
         <property name="hibernate.connection.password">password</property>
   	<!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/postgres</property>-->
   		<property name="hibernate.connection.url">jdbc:postgresql://course-college-progress-mains.postgres.database.azure.com:5432/postgres</property>

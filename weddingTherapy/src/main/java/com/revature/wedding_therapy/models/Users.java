@@ -15,6 +15,7 @@ public class Users {
 	@Column(name = "user_id")
 	private int user_id;
 
+	// employee bethrothed attendee
 	@Column(name = "wedding_roll")
 	private String wedding_roll;
 
