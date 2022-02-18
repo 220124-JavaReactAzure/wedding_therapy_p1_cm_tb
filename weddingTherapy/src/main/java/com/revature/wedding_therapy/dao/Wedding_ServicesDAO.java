@@ -1,5 +1,5 @@
 package com.revature.wedding_therapy.dao;
 
-public class BethrothedDAO {
+public class Wedding_ServicesDAO {
 
 }
