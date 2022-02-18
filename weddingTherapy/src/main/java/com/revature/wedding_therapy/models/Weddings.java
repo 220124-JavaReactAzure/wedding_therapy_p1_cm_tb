@@ -24,21 +24,22 @@ public class Weddings {
 	@Column(name = "wedding_budget")
 	private double wedding_budget;
 
-	@Column(name = "venue_id")
-	private int venue_id;
-
-	@Column(name = "musician_id")
-	private int musician_id;
-
 	@Column(name = "caterer_id")
 	private int caterer_id;
 
 	@Column(name = "florist_id")
 	private int florist_id;
 
+	@Column(name = "musician_id")
+	private int musician_id;
+
 	@Column(name = "photographer_id")
 	private int photographer_id;
 
+	@Column(name = "venue_id")
+	private int venue_id;
+
+	
 	// CONSTRUCTORS
 	// Default Constructor
 	public Weddings() {
@@ -47,20 +48,21 @@ public class Weddings {
 	}
 
 	// Full-Arg Constructor
-	public Weddings(int wedding_id, String wedding_name, String wedding_date, double wedding_budget, int venue_id,
-			int musician_id, int caterer_id, int florist_id, int photographer_id) {
+	public Weddings(int wedding_id, String wedding_name, String wedding_date, double wedding_budget, int caterer_id,
+			int florist_id, int musician_id, int photographer_id, int venue_id) {
 		super();
 		this.wedding_id = wedding_id;
 		this.wedding_name = wedding_name;
 		this.wedding_date = wedding_date;
 		this.wedding_budget = wedding_budget;
-		this.venue_id = venue_id;
-		this.musician_id = musician_id;
 		this.caterer_id = caterer_id;
 		this.florist_id = florist_id;
+		this.musician_id = musician_id;
 		this.photographer_id = photographer_id;
+		this.venue_id = venue_id;
 	}
 
+	
 	// GETTERS & SETTERS
 	public int getWedding_id() {
 		return wedding_id;
@@ -94,22 +96,6 @@ public class Weddings {
 		this.wedding_budget = wedding_budget;
 	}
 
-	public int getVenue_id() {
-		return venue_id;
-	}
-
-	public void setVenue_id(int venue_id) {
-		this.venue_id = venue_id;
-	}
-
-	public int getMusician_id() {
-		return musician_id;
-	}
-
-	public void setMusician_id(int musician_id) {
-		this.musician_id = musician_id;
-	}
-
 	public int getCaterer_id() {
 		return caterer_id;
 	}
@@ -126,6 +112,14 @@ public class Weddings {
 		this.florist_id = florist_id;
 	}
 
+	public int getMusician_id() {
+		return musician_id;
+	}
+
+	public void setMusician_id(int musician_id) {
+		this.musician_id = musician_id;
+	}
+
 	public int getPhotographer_id() {
 		return photographer_id;
 	}
@@ -134,22 +128,34 @@ public class Weddings {
 		this.photographer_id = photographer_id;
 	}
 
+	public int getVenue_id() {
+		return venue_id;
+	}
+
+	public void setVenue_id(int venue_id) {
+		this.venue_id = venue_id;
+	}
+
+	
 	// TOSTRING METHOD
 	@Override
 	public String toString() {
 		return "Weddings [wedding_id=" + wedding_id + ", wedding_name=" + wedding_name + ", wedding_date="
-				+ wedding_date + ", wedding_budget=" + wedding_budget + ", venue_id=" + venue_id + ", musician_id="
-				+ musician_id + ", caterer_id=" + caterer_id + ", florist_id=" + florist_id + ", photographer_id="
-				+ photographer_id + "]";
+				+ wedding_date + ", wedding_budget=" + wedding_budget + ", caterer_id=" + caterer_id + ", florist_id="
+				+ florist_id + ", musician_id=" + musician_id + ", photographer_id=" + photographer_id + ", venue_id="
+				+ venue_id + "]";
 	}
 
-	// HASHCODE
+	
+	// HASHCODE METHOD
 	@Override
 	public int hashCode() {
 		return Objects.hash(caterer_id, florist_id, musician_id, photographer_id, venue_id, wedding_budget,
 				wedding_date, wedding_id, wedding_name);
 	}
 
+	
+	//EQUALS METHOD
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
