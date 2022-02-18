@@ -11,7 +11,7 @@
 CREATE TABLE weddings (
 	wedding_id int PRIMARY KEY,
 	wedding_name varchar (50) NOT NULL,
-	wedding_date varchar (50) NOT NULL,
+	wedding_date varchar (50) UNIQUE NOT NULL,
 	wedding_budget numeric NOT NULL,
 	caterer_id int NOT NULL,  --many to one relationship with wedding_services service_type_id. 
 	florist_id int NOT NULL,  --many to one relationship with wedding_services service_type_id. 
