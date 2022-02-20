@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.wedding_therapy.models.Users;
 import com.revature.wedding_therapy.services.UsersService;
 
-public class UsersServlet {
+public class UsersServlet extends HttpServlet{
 	
 	
 	private final UsersService usersService;
