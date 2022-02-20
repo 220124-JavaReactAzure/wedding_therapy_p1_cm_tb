@@ -8,35 +8,35 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "weddings")
+@Table(name="weddings")
 public class Weddings {
 
 	@Id
-	@Column(name = "wedding_id")
+	@Column(name="wedding_id")
 	private int wedding_id;
 
-	@Column(name = "wedding_name")
+	@Column(name="wedding_name")
 	private String wedding_name;
 
-	@Column(name = "wedding_date")
+	@Column(name="wedding_date")
 	private String wedding_date;
 
-	@Column(name = "wedding_budget")
+	@Column(name="wedding_budget")
 	private double wedding_budget;
 
-	@Column(name = "caterer_id")
+	@Column(name="caterer_id")
 	private int caterer_id;
 
-	@Column(name = "florist_id")
+	@Column(name="florist_id")
 	private int florist_id;
 
-	@Column(name = "musician_id")
+	@Column(name="musician_id")
 	private int musician_id;
 
-	@Column(name = "photographer_id")
+	@Column(name="photographer_id")
 	private int photographer_id;
 
-	@Column(name = "venue_id")
+	@Column(name="venue_id")
 	private int venue_id;
 
 	

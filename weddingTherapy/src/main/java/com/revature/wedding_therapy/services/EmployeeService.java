@@ -9,7 +9,7 @@ import com.revature.wedding_therapy.models.Employee;
 public class EmployeeService {
 
 	private EmployeeDAO employeeDAO;
-	//private WeddingDAO weddingDAO;
+	//private WeddingService weddingService;
 	
 	public EmployeeService(EmployeeDAO employeeDAO) {
 		this.employeeDAO = employeeDAO;

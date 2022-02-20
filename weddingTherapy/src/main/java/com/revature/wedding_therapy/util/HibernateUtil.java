@@ -9,7 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import com.revature.wedding_therapy.models.Employee;
+import com.revature.wedding_therapy.models.*;
 
 public class HibernateUtil {
 
@@ -27,6 +27,7 @@ public class HibernateUtil {
 			configuration.setProperties(props);
 			// ONE ADDITIONAL STEP I NEED TO INCLUDE
 			configuration.addAnnotatedClass(Employee.class);
+			configuration.addAnnotatedClass(Weddings.class);
 	
 			// ServiceRegistry
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

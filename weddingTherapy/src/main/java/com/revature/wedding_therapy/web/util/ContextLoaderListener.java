@@ -22,8 +22,14 @@ public class ContextLoaderListener implements ServletContextListener{
 		EmployeeService employeeService = new EmployeeService(employeeDAO);
 		EmployeeServlet employeeServlet = new EmployeeServlet(mapper, employeeService);
 		
+		WeddingDAO weddingDAO = new WeddingDAO();
+		WeddingService weddingService = new WeddingService(weddingDAO);
+		WeddingServlet weddingServlet = new WeddingServlet(mapper, weddingService);
+		
 		ServletContext context = sce.getServletContext();
 		context.addServlet("EmployeeServlet", employeeServlet).addMapping("/employee/*");
+		context.addServlet("WeddingServlet", weddingServlet).addMapping("/wedding/*");
+		
 	}
 	
 	@Override
@@ -31,4 +37,5 @@ public class ContextLoaderListener implements ServletContextListener{
 		// TODO Auto-generated method stub
 		ServletContextListener.super.contextDestroyed(sce);
 	}
+	
 }
