@@ -17,7 +17,6 @@ import com.revature.wedding_therapy.services.UsersService;
 
 public class UsersServlet extends HttpServlet{
 	
-	
 	private final UsersService usersService;
 	private final ObjectMapper mapper;
 	

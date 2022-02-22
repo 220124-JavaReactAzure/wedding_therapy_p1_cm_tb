@@ -32,10 +32,16 @@ public class ContextLoaderListener implements ServletContextListener{
 		UsersService usersService = new UsersService(usersDAO);
 		UsersServlet usersServlet = new UsersServlet(mapper, usersService);
 		
+		Wedding_ServicesDAO wedServicesDAO = new Wedding_ServicesDAO();
+		Wedding_ServicesService wedServicesService = new Wedding_ServicesService(wedServicesDAO);
+		Wedding_ServicesServlet wedServicesServlet = new Wedding_ServicesServlet(mapper, wedServicesService);
+		
 		ServletContext context = sce.getServletContext();
 		context.addServlet("EmployeeServlet", employeeServlet).addMapping("/employee/*");
 		context.addServlet("UserServlet", usersServlet).addMapping("/users/*");
 		context.addServlet("WeddingServlet", weddingServlet).addMapping("/wedding/*");
+		context.addServlet("Wedding_ServicesServlet", wedServicesServlet).addMapping("/wedservice/*");
+		
 	}
 	
 	@Override

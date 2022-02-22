@@ -27,6 +27,8 @@
         <!-- We HAVE TO map our classes here in order for them to get picked up by Hibernate-->
         <mapping class="com.revature.wedding_therapy.models.Employee"/>
         <mapping class="com.revature.wedding_therapy.models.Weddings"/>
+        <mapping class="com.revature.wedding_therapy.models.Users"/>
+        <mapping class="com.revature.wedding_therapy.models.Wedding_Services"/>
         
         
 

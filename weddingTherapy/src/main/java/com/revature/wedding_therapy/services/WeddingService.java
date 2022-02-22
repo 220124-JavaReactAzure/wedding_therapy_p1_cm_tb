@@ -15,6 +15,7 @@ public class WeddingService {
 		this.weddingDAO = weddingDAO;
 	}
 	
+	
 	public boolean createNewWedding(Weddings newWedding) throws WeddingNotNamedException {
 		if(newWedding.getWedding_name() == null || newWedding.getWedding_name().equals("")) {
 			throw new WeddingNotNamedException("Please Give This Wedding A Name!");

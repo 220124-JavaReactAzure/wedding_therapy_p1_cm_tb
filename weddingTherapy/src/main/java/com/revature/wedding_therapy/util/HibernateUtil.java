@@ -28,6 +28,8 @@ public class HibernateUtil {
 			// ONE ADDITIONAL STEP I NEED TO INCLUDE
 			configuration.addAnnotatedClass(Employee.class);
 			configuration.addAnnotatedClass(Weddings.class);
+			configuration.addAnnotatedClass(Users.class);
+			configuration.addAnnotatedClass(Wedding_Services.class);
 	
 			// ServiceRegistry
 			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();

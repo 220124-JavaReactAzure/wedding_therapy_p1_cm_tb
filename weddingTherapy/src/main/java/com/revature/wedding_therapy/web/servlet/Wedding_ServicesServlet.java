@@ -12,25 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.core.exc.StreamReadException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.wedding_therapy.models.Weddings;
-import com.revature.wedding_therapy.services.WeddingService;
+import com.revature.wedding_therapy.models.Wedding_Services;
+import com.revature.wedding_therapy.services.Wedding_ServicesService;
 
-public class WeddingServlet extends HttpServlet {
-
+public class Wedding_ServicesServlet extends HttpServlet{
+	
 	ObjectMapper mapper;
-	WeddingService weddingService;
-
-	public WeddingServlet(ObjectMapper mapper, WeddingService weddingService) {
+	Wedding_ServicesService wedding_servicesService;
+	
+	public Wedding_ServicesServlet(ObjectMapper mapper, Wedding_ServicesService wedding_servicesService) {
 		this.mapper = mapper;
-		this.weddingService = weddingService;
+		this.wedding_servicesService = wedding_servicesService;
 	}
-
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json");
 		try {
-			Weddings newWedding = mapper.readValue(req.getInputStream(), Weddings.class);
-			boolean wasReg = weddingService.createNewWedding(newWedding);
+			Wedding_Services wedservice = mapper.readValue(req.getInputStream(), Wedding_Services.class);
+			boolean wasReg = wedding_servicesService.createWedding_Services(wedservice);
 
 			if (wasReg) {
 				resp.setStatus(201);
@@ -48,33 +49,33 @@ public class WeddingServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Switch statements are back sorry
 		PrintWriter writer = resp.getWriter();
-		// Obtains everything after the /directors
+		
 		String path = req.getPathInfo();
 		if (path == null)
 			path = "";
 		switch (path) {
 		case "/ID":
 			try {
-				String idParam = req.getParameter("weddingId");
+				String idParam = req.getParameter("weddingServiceId");
 				if (idParam == null) {
 					resp.setStatus(400);
-					writer.write("Please include the query ?weddingId=# in your url");
+					writer.write("Please include the query ?weddingServiceId=# in your url");
 					return;
 				}
 
-				int weddingId = Integer.valueOf(idParam);
+				int weddingServiceId = Integer.valueOf(idParam);
 
-				Weddings wedding = weddingService.getWedding(weddingId);
-				if (wedding == null) {
+				Wedding_Services wedService = wedding_servicesService.getWedding_Services(weddingServiceId);
+				if (wedService == null) {
 					resp.setStatus(500);
 					return;
 				}
-				String payload = mapper.writeValueAsString(wedding);
+				String payload = mapper.writeValueAsString(wedService);
 				writer.write(payload);
 				resp.setStatus(200);
 			} catch (StreamReadException | DatabindException e) {
@@ -82,19 +83,20 @@ public class WeddingServlet extends HttpServlet {
 			}
 			break;
 		default:
-			List<Weddings> weds = weddingService.findAllWeddings();
-			String payload = mapper.writeValueAsString(weds.toString().toString());
+			System.out.print("\nWedding_ServicesServlet:GetAll\n");
+			List<Wedding_Services> wedServices = wedding_servicesService.getAllWedding_Services();
+			String payload = mapper.writeValueAsString(wedServices.toString().toString());
 			writer.write(payload);
 			resp.setStatus(200);
 			break;
 		}
 	}
-
+	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			Weddings wedding = mapper.readValue(req.getInputStream(), Weddings.class);
-			weddingService.updateWedding(wedding);
+			Wedding_Services wedService = mapper.readValue(req.getInputStream(), Wedding_Services.class);
+			wedding_servicesService.updateWedding_Services(wedService);
 			resp.setStatus(204);
 		} catch (StreamReadException | DatabindException e) {
 			resp.setStatus(400);
@@ -106,21 +108,21 @@ public class WeddingServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			PrintWriter writer = resp.getWriter();
-			String idParam = req.getParameter("weddingId");
+			String idParam = req.getParameter("weddingServiceId");
 			if (idParam == null) {
 				resp.setStatus(400);
-				writer.write("Please include the query ?weddingId=# in your url");
+				writer.write("Please include the query ?weddingServiceId=# in your url");
 				return;
 			}
 
-			int weddingId = Integer.valueOf(idParam);
+			int weddingServiceId = Integer.valueOf(idParam);
 
-			boolean delete = weddingService.deleteWedding(weddingId);
+			boolean delete = wedding_servicesService.deleteWedding_Services(weddingServiceId);
 			if (delete) {
 				resp.setStatus(200);
 				return;
@@ -138,15 +140,6 @@ public class WeddingServlet extends HttpServlet {
 			resp.getWriter().write("Some other random exception did not persist");
 			e.printStackTrace();
 		}
-//			else {
-//				String payload = mapper.writeValueAsString("Deletion Failed");
-//				writer.write(payload);
-//				resp.setStatus(304);
-//				return;
-//			}
-//		} catch (StreamReadException | DatabindException e) {
-//			resp.setStatus(400);
-//		}
 	}
 
 }

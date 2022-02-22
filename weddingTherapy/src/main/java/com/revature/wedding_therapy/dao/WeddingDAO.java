@@ -21,14 +21,13 @@ public class WeddingDAO {
 			Transaction trans = session.beginTransaction();
 			session.save(newWedding);
 			trans.commit();
-
-			return true;
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return false;
 		} finally {
 			HibernateUtil.closeSession();
 		}
+		return true;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -44,23 +43,24 @@ public class WeddingDAO {
 			return null;
 		} finally {
 			HibernateUtil.closeSession();
-			return weddingList;
 		}
+		return weddingList;
 	}
 
 	public Weddings findWeddingByID(int id) {
+		Weddings wedding = null;
 		try {
 			Session session = HibernateUtil.getSession();
-			//Transaction trans = session.beginTransaction();
-			Weddings wedding = session.get(Weddings.class, id);
-			//trans.commit();
-			return wedding;
+			Transaction trans = session.beginTransaction();
+			wedding = session.get(Weddings.class, id);
+			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return null;
 		} finally {
 			HibernateUtil.closeSession();
 		}
+		return wedding;
 	}
 
 	public boolean updateWedding(Weddings wedding) {
@@ -70,13 +70,13 @@ public class WeddingDAO {
 			Transaction transaction = session.beginTransaction();
 			session.merge(wedding);
 			transaction.commit();
-			return true;
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
-			return true;
+			return false;
 		} finally {
 			HibernateUtil.closeSession();
 		}
+		return true;
 	}
 
 	public boolean deleteWedding(int id) {
@@ -92,8 +92,8 @@ public class WeddingDAO {
 		} 
 		finally {
 			HibernateUtil.closeSession();
-			return true;
 		}
+		return true;
 	}
 
 }
