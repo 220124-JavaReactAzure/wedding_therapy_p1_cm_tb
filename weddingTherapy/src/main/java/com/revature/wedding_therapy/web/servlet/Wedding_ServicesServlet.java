@@ -83,7 +83,6 @@ public class Wedding_ServicesServlet extends HttpServlet{
 			}
 			break;
 		default:
-			System.out.print("\nWedding_ServicesServlet:GetAll\n");
 			List<Wedding_Services> wedServices = wedding_servicesService.getAllWedding_Services();
 			String payload = mapper.writeValueAsString(wedServices.toString().toString());
 			writer.write(payload);

@@ -33,13 +33,10 @@ public class Wedding_ServicesDAO {
 	@SuppressWarnings("unchecked")
 	public List<Wedding_Services> getAllWedding_Services() {
 		List<Wedding_Services> wedServices = new ArrayList<>();
-		System.out.print("\nWedding_ServicesDAO:GetAllWedding_Services00\n");
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
-			System.out.print("\nWedding_ServicesDAO:GetAllWedding_Services01\n");
 			wedServices = session.createQuery("FROM Wedding_Services").list();
-			System.out.print("\nWedding_ServicesDAO:GetAllWedding_Services02\n");
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();

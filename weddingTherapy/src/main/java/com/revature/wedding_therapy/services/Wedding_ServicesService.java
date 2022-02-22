@@ -25,7 +25,6 @@ public class Wedding_ServicesService {
 	}
 	
 	public List<Wedding_Services> getAllWedding_Services() {
-		System.out.print("\nWedding_ServicesService:GetAllWedding_Services\n");
 		return wedding_servicesDAO.getAllWedding_Services();
 	}
 	
