@@ -50,7 +50,7 @@ public class Users {
 
 	
 	
-	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
+	///////////// TODO: should this field be set up as a one to many or many to one relationship?
 	@Column(name = "meal_id")
 	private int meal_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?

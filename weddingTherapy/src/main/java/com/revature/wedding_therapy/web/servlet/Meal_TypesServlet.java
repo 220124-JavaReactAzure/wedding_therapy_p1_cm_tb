@@ -95,15 +95,53 @@ public class Meal_TypesServlet extends HttpServlet{
 	
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPut(req, resp);
+		try {
+			Meal_Types meal = mapper.readValue(req.getInputStream(), Meal_Types.class);
+			meal_TypesService.updateMeal_Types(meal);
+			resp.setStatus(204);
+		} catch (StreamReadException | DatabindException e) {
+			resp.setStatus(400);
+			resp.getWriter().write("JSON threw exception");
+			e.printStackTrace();
+		} catch (Exception e) {
+			resp.setStatus(500);
+			resp.getWriter().write("Some other random exception did not persist");
+			e.printStackTrace();
+		}
 	}
 	
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+		try {
+			PrintWriter writer = resp.getWriter();
+			String idParam = req.getParameter("mealId");
+			if (idParam == null) {
+				resp.setStatus(400);
+				writer.write("Please include the query ?MealId=# in your url");
+				return;
+			}
+
+			int mealId = Integer.valueOf(idParam);
+
+			boolean delete = meal_TypesService.deleteMeal_Types(mealId);
+			if (delete) {
+				resp.setStatus(200);
+				return;
+			}
+			else {
+				resp.setStatus(500);
+				resp.getWriter().write("Database did not delete");
+			}
+		} catch (StreamReadException | DatabindException e) {
+			resp.setStatus(400);
+			resp.getWriter().write("JSON threw exception");
+			e.printStackTrace();
+		} catch (Exception e) {
+			resp.setStatus(500);
+			resp.getWriter().write("Some other random exception did not persist");
+			e.printStackTrace();
+		}
 	}
 	
 }
