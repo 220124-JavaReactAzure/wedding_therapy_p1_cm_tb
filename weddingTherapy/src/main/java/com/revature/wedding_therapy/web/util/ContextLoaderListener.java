@@ -5,6 +5,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import com.revature.wedding_therapy.dao.*;
@@ -14,8 +17,12 @@ import com.revature.wedding_therapy.web.servlet.*;
 @WebListener
 public class ContextLoaderListener implements ServletContextListener{
 
+	private final Logger logger = LogManager.getLogger();
+	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
+		
+		logger.info("\nWedding Therapy Initializing . . . .\n");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new Hibernate5Module());
@@ -36,11 +43,20 @@ public class ContextLoaderListener implements ServletContextListener{
 		Wedding_ServicesService wedServicesService = new Wedding_ServicesService(wedServicesDAO);
 		Wedding_ServicesServlet wedServicesServlet = new Wedding_ServicesServlet(mapper, wedServicesService);
 		
+		Service_TypesDAO service_TypesDAO = new Service_TypesDAO();
+		Service_TypesService service_TypesService = new Service_TypesService(service_TypesDAO);
+		Service_TypeServlet service_TypesServlet = new Service_TypeServlet(mapper, service_TypesService);
+		
+		
+		
 		ServletContext context = sce.getServletContext();
 		context.addServlet("EmployeeServlet", employeeServlet).addMapping("/employee/*");
 		context.addServlet("UserServlet", usersServlet).addMapping("/users/*");
 		context.addServlet("WeddingServlet", weddingServlet).addMapping("/wedding/*");
 		context.addServlet("Wedding_ServicesServlet", wedServicesServlet).addMapping("/wedservice/*");
+		context.addServlet("Service_TypeServlet", service_TypesServlet).addMapping("/servicetype/*");
+		
+		logger.info("\nWedding Therapy is Initialized\n");
 		
 	}
 	

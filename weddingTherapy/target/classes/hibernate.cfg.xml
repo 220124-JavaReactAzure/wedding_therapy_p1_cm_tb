@@ -29,6 +29,8 @@
         <mapping class="com.revature.wedding_therapy.models.Weddings"/>
         <mapping class="com.revature.wedding_therapy.models.Users"/>
         <mapping class="com.revature.wedding_therapy.models.Wedding_Services"/>
+        <mapping class="com.revature.wedding_therapy.models.Service_Types"/>
+        <mapping class="com.revature.wedding_therapy.models.Meal_Types"/>
         
         
 

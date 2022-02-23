@@ -5,21 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.wedding_therapy.models.Service_Types;
 import com.revature.wedding_therapy.models.Weddings;
 import com.revature.wedding_therapy.util.HibernateUtil;
 
-public class WeddingDAO {
+public class Service_TypesDAO {
 
-	public boolean createNewWedding(Weddings newWedding) {
+	
+	
+	public boolean createNewService_Type(Service_Types newService_Types) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
-			session.save(newWedding);
+			session.save(newService_Types);
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -30,15 +32,14 @@ public class WeddingDAO {
 		return true;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<Weddings> findAllWeddings(){
-		List<Weddings> weddingList = null;
-		
+	
+	public List<Service_Types> getAllService_Types() {
+		List<Service_Types> servList = null;
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
-			weddingList = session.createQuery("FROM Weddings").list();
+			servList = session.createQuery("FROM Service_Types").list();
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -46,16 +47,17 @@ public class WeddingDAO {
 		} finally {
 			HibernateUtil.closeSession();
 		}
-		return weddingList;
+		return servList;
 	}
-
-	public Weddings findWeddingByID(int id) {
-		Weddings wedding = null;
+	
+	
+	public Service_Types getService_TypesID(int id) {
+		Service_Types service_Types = null;
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
-			wedding = session.get(Weddings.class, id);
+			service_Types = session.get(Service_Types.class, id);
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -63,15 +65,16 @@ public class WeddingDAO {
 		} finally {
 			HibernateUtil.closeSession();
 		}
-		return wedding;
+		return service_Types;
 	}
-
-	public boolean updateWedding(Weddings wedding) {
+	
+	
+	public boolean updateService_Types(Service_Types oldService_Types) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
 			
-			session.merge(wedding);
+			session.merge(oldService_Types);
 			transaction.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -81,14 +84,15 @@ public class WeddingDAO {
 		}
 		return true;
 	}
-
-	public boolean deleteWedding(int id) {
+	
+	
+	public boolean deleteService_types(int id) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
 			
-			Weddings wedding = session.get(Weddings.class, id);
-			session.delete(wedding);
+			Service_Types servType = session.get(Service_Types.class, id);
+			session.delete(servType);
 			
 			transaction.commit();
 		} catch (HibernateException | IOException e) {
@@ -100,5 +104,5 @@ public class WeddingDAO {
 		}
 		return true;
 	}
-
+	
 }
