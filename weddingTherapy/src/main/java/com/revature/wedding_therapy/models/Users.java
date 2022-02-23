@@ -4,57 +4,86 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")  // Helps stop serialization recursion
 public class Users {
 	
-	@Id
+	@Id //Makes this field the table's Primary Key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Makes the PK serialized
 	@Column(name = "user_id")
 	private int user_id;
 
-	// employee bethrothed attendee
-	@Column(name = "wedding_roll")
+	//This field is not unique but cannot be null or blank
+	@Column(name = "wedding_roll", nullable = false, columnDefinition = "VARCHAR CHECK (wedding_roll <> '')")
 	private String wedding_roll;
 
-	@Column(name = "firstname")
+	//this field must not be null, and not blank
+	@Column(name = "firstname", nullable = false, columnDefinition = "VARCHAR CHECK (firstname <> '')")
 	private String firstname;
 
-	@Column(name = "lastname")
+	//this field must not be null, and not blank
+	@Column(name = "lastname", nullable = false, columnDefinition = "VARCHAR CHECK (lastname <> '')")
 	private String lastname;
 
-	@Column(name = "email")
+	//this field must be unique, not null, and not blank
+	@Column(name = "email", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (email <> '')")
 	private String email;
 
-	@Column(name = "username")
+	//this field must be unique, not null, and not blank
+	@Column(name = "username", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (username <> '')")
 	private String username;
 
-	@Column(name = "password")
+	//this field must be unique, not null, and not blank
+	@Column(name = "password", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (password <> '')")
 	private String password;
 
+	
+	
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	@Column(name = "meal_id")
 	private int meal_id;
-
-	@Column(name = "plus_one")
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
+	
+	
+	//This field is not unique but cannot be null
+	@Column(name = "plus_one", nullable = false)
 	private boolean plus_one;
 	
+	
+	
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	@Column(name = "plus_one_meal_id")
 	private int plus_one_meal_id;
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
+	
+	
 
-	@Column(name = "betrothed")
+	//This field is not unique but cannot be null and only for bride or groom
+	@Column(name = "betrothed", nullable = false)
 	private boolean betrothed;
 
+	
+	
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	@Column(name = "wedding_id")
 	private int wedding_id;
-
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
 	// CONSTRUCTORS
 	// Default Constructor
 	public Users() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	// Full-Arg Constructor
