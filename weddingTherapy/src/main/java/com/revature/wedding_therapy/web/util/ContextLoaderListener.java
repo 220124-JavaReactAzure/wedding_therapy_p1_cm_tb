@@ -5,6 +5,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,7 +23,8 @@ public class ContextLoaderListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		
-		logger.info("\nWedding Therapy Initializing . . . .\n");
+		logger.info("\nWedding Therapy is Initializing . . . .\n");
+		System.out.print("\nWedding Therpay Initializing . . . .\n");
 		
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new Hibernate5Module());
@@ -60,6 +62,7 @@ public class ContextLoaderListener implements ServletContextListener{
 		context.addServlet("Meal_TypesServlet", meal_TypesServlet).addMapping("/mealtypes/*");
 		
 		logger.info("\nWedding Therapy is Initialized\n");
+		System.out.print("\nWedding Therapy is Initialized\n");
 		
 	}
 	

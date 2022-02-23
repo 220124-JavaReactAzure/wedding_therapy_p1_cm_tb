@@ -48,8 +48,9 @@ public class Weddings {
 	}
 
 	// Full-Arg Constructor
-	public Weddings(int wedding_id, String wedding_name, String wedding_date, double wedding_budget, int caterer_id,
-			int florist_id, int musician_id, int photographer_id, int venue_id) {
+	public Weddings(int wedding_id, String wedding_name, String wedding_date, 
+			double wedding_budget, int caterer_id,int florist_id, int musician_id, 
+			int photographer_id, int venue_id) {
 		super();
 		this.wedding_id = wedding_id;
 		this.wedding_name = wedding_name;
