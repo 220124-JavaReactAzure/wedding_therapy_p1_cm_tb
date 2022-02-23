@@ -47,7 +47,9 @@ public class ContextLoaderListener implements ServletContextListener{
 		Service_TypesService service_TypesService = new Service_TypesService(service_TypesDAO);
 		Service_TypeServlet service_TypesServlet = new Service_TypeServlet(mapper, service_TypesService);
 		
-		
+		Meal_TypesDAO meal_TypesDAO = new Meal_TypesDAO();
+		Meal_TypesService meal_TypesService = new Meal_TypesService(meal_TypesDAO);
+		Meal_TypesServlet meal_TypesServlet = new Meal_TypesServlet(mapper, meal_TypesService);
 		
 		ServletContext context = sce.getServletContext();
 		context.addServlet("EmployeeServlet", employeeServlet).addMapping("/employee/*");
@@ -55,6 +57,7 @@ public class ContextLoaderListener implements ServletContextListener{
 		context.addServlet("WeddingServlet", weddingServlet).addMapping("/wedding/*");
 		context.addServlet("Wedding_ServicesServlet", wedServicesServlet).addMapping("/wedservice/*");
 		context.addServlet("Service_TypeServlet", service_TypesServlet).addMapping("/servicetype/*");
+		context.addServlet("Meal_TypesServlet", meal_TypesServlet).addMapping("/mealtypes/*");
 		
 		logger.info("\nWedding Therapy is Initialized\n");
 		

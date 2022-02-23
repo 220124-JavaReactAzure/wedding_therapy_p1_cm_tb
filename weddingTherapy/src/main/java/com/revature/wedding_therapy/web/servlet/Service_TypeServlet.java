@@ -27,7 +27,7 @@ public class Service_TypeServlet extends HttpServlet{
 	}
 	
 	@Override
-	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json");
 		try {
 			Service_Types newServe = mapper.readValue(req.getInputStream(), Service_Types.class);
@@ -91,8 +91,9 @@ public class Service_TypeServlet extends HttpServlet{
 	}
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			System.out.print("\nService_TypeServlet:doPost\n");
 			Service_Types servType = mapper.readValue(req.getInputStream(), Service_Types.class);
 			service_TypesService.updateService_Types(servType);
 			resp.setStatus(204);

@@ -1,27 +1,23 @@
 package com.revature.wedding_therapy.dao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import com.revature.wedding_therapy.models.Service_Types;
-import com.revature.wedding_therapy.models.Weddings;
+import com.revature.wedding_therapy.models.Meal_Types;
 import com.revature.wedding_therapy.util.HibernateUtil;
 
-public class Service_TypesDAO {
+public class Meal_TypesDAO {
 
-	
-	
-	public boolean createNewService_Type(Service_Types newService_Types) {
+	public boolean createNewMeal_Types(Meal_Types newMeal_Types) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
-			session.save(newService_Types);
+			session.save(newMeal_Types);
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -33,13 +29,14 @@ public class Service_TypesDAO {
 	}
 	
 	
-	public List<Service_Types> getAllService_Types() {
-		List<Service_Types> servList = null;
+	public List<Meal_Types> getAllMeal_Types(){
+		List<Meal_Types> meals = null;
+		
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
-			servList = session.createQuery("FROM Service_Types").list();
+			meals = session.createQuery("FROM Meal_Types").list();
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -47,17 +44,17 @@ public class Service_TypesDAO {
 		} finally {
 			HibernateUtil.closeSession();
 		}
-		return servList;
+		return meals;
 	}
 	
 	
-	public Service_Types getService_TypesID(int id) {
-		Service_Types service_Types = null;
+	public Meal_Types getMeal_TypesId(int id) {
+		Meal_Types meal = null;
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
-			service_Types = session.get(Service_Types.class, id);
+			meal = session.get(Meal_Types.class, id);
 			trans.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -65,17 +62,16 @@ public class Service_TypesDAO {
 		} finally {
 			HibernateUtil.closeSession();
 		}
-		return service_Types;
+		return meal;
 	}
 	
 	
-	public boolean updateService_Types(Service_Types oldService_Types) {
+	public boolean updateMeal_Types(Meal_Types oldMeal_Types) {
 		try {
-			System.out.print("\nService_TypeDAO:updateService\n");
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
 			
-			session.merge(oldService_Types);
+			session.merge(oldMeal_Types);
 			transaction.commit();
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
@@ -87,13 +83,13 @@ public class Service_TypesDAO {
 	}
 	
 	
-	public boolean deleteService_types(int id) {
+	public boolean deleteMeal_Types(int id) {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
 			
-			Service_Types servType = session.get(Service_Types.class, id);
-			session.delete(servType);
+			Meal_Types meal = session.get(Meal_Types.class, id);
+			session.delete(meal);
 			
 			transaction.commit();
 		} catch (HibernateException | IOException e) {
@@ -105,5 +101,4 @@ public class Service_TypesDAO {
 		}
 		return true;
 	}
-	
 }

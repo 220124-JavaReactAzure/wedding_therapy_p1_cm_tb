@@ -35,6 +35,7 @@ public class Service_TypesService {
 	
 	
 	public boolean updateService_Types(Service_Types service_Types) {
+		System.out.print("\nService_TypeService:updateService\n");
 		return service_TypesDAO.updateService_Types(service_Types);
 	}
 	
