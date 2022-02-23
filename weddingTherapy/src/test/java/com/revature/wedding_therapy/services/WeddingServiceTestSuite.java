@@ -30,21 +30,51 @@ public class WeddingServiceTestSuite {
 		
 		Weddings validWedding = new Weddings(12345, "TestWedding", "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
 		when( mockWeddingDAO.createNewWedding(validWedding) ).thenReturn(true);
+		
 		Assert.assertTrue(sut.createNewWedding(validWedding));
 		
 		try {
-		Weddings nullName = new Weddings(12345, null, "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
-		sut.createNewWedding(nullName);
+			Weddings nullName = new Weddings(12345, null, "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
+			sut.createNewWedding(nullName);
 		}catch(WeddingNotNamedException e) {
-			Assert.assertEquals(e, Exception.class);
+			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
+		}
 		
-		Weddings emptyName = new Weddings(12345, "", "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
+		try {
+			Weddings emptyName = new Weddings(12345, "", "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
+			sut.createNewWedding(emptyName);
+		}catch(WeddingNotNamedException e) {
+			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
+		}
 		
-		Weddings nullDate = new Weddings(12345, "TestWedding", null, 5555.55, 0, 0, 0, 0, 0);
+		try {
+			Weddings nullDate = new Weddings(12345, "TestWedding", null, 5555.55, 0, 0, 0, 0, 0);
+			sut.createNewWedding(nullDate);
+		}catch(WeddingNotNamedException e) {
+			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
+		}
 		
-		Weddings emptyDate = new Weddings(12345, "TestWedding", "", 5555.55, 0, 0, 0, 0, 0);
+		try {
+			Weddings emptyDate = new Weddings(12345, "TestWedding", "", 5555.55, 0, 0, 0, 0, 0);
+			sut.createNewWedding(emptyDate);
+		}catch(WeddingNotNamedException e) {
+			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
+		}
 		
-		Weddings inValidbudget = new Weddings(12345, "TestWedding", "jan 1, 2023", 0.0, 0, 0, 0, 0, 0);
+		try {
+			Weddings inValidbudget = new Weddings(12345, "TestWedding", "jan 1, 2023", 0.2, 0, 0, 0, 0, 0);
+			sut.createNewWedding(inValidbudget);
+		}catch(WeddingNotNamedException e) {
+			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

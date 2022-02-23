@@ -17,11 +17,12 @@ public class UsersService {
 	
 	
 	public boolean createNewUsers(Users account) {
+		System.out.print("\nUsersService:createNewUsers\n");
 		return usersDAO.createNewUser(account);
 	}
 	
 	public List<Users> getAllUsers(){
-		System.out.print("\n\n\nUsersService:getAllUsers\n\n\n");
+		System.out.print("\nUsersService:getAllUsers\n");
 		return usersDAO.getAllUsers();
 	}
 

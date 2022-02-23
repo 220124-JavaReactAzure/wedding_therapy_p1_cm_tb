@@ -1,7 +1,6 @@
 package com.revature.wedding_therapy.dao;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.HibernateException;

@@ -28,6 +28,7 @@ public class UsersServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json");
+		System.out.print("\nUsersServlet:doPost\n");
 		try {
 			Users newUsers = mapper.readValue(req.getInputStream(), Users.class);
 			boolean wasReg = usersService.createNewUsers(newUsers);
@@ -51,7 +52,7 @@ public class UsersServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.print("\n\n\nUsersServlet:doGet\n\n\n");
+		System.out.print("\nUsersServlet:doGet\n");
 		PrintWriter writer = resp.getWriter();
 		List<Users> users = usersService.getAllUsers();
 		String payload = mapper.writeValueAsString(users);

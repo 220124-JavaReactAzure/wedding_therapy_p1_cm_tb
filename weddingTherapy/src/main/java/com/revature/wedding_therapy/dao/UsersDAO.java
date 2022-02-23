@@ -14,28 +14,28 @@ public class UsersDAO {
 	
 	public boolean createNewUser(Users newUsers) {
 		try {
-			
+			System.out.println("\nUsersDAO:createNewUsers\n"+newUsers.toString()+"\n");
 			Session session = HibernateUtil.getSession();
-			System.out.println("\n\n\nUsersDAO:createNewUsers\n\n\n"+newUsers.toString());
 			Transaction trans = session.beginTransaction();
-			session.save(newUsers);
-			trans.commit();            // Make sure to put transactions around all DAO actions so it works.
 			
-			return true;
+			session.save(newUsers);
+			trans.commit();     
+			
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return false;
 		} finally {
 			HibernateUtil.closeSession();
 		}
+		return true;
 	}
 	
 	
 	public List<Users> getAllUsers(){
 		try {
-			System.out.print("\n\n\n\n\nUsersDAO:getAllUsers\n\n\n\n\n");
+			System.out.print("\nUsersDAO:getAllUsers\n");
 			Session session = HibernateUtil.getSession();
-			List<Users> answer = session.createQuery("FROM users").list();
+			List<Users> answer = session.createQuery("FROM Users").list();
 			return answer;
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();

@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -21,7 +22,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "users")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")  // Helps stop serialization recursion
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")  // Helps stop serialization recursion
 public class Users {
 	
 	@Id //Makes this field the table's Primary Key
@@ -56,7 +57,7 @@ public class Users {
 	
 	
 	///////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToMany (mappedBy="meal_id", fetch=FetchType.EAGER) 
+	@OneToOne (mappedBy="meal_id", fetch=FetchType.EAGER) 
 	@JoinColumn(name = "meal_id")
 	//@JsonIgnoreProperties(value = "meal_type")
 	private int meal_id;
@@ -70,7 +71,7 @@ public class Users {
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToMany (mappedBy="meal_id", fetch=FetchType.EAGER) 
+	@OneToOne (mappedBy="meal_id", fetch=FetchType.EAGER) 
 	@JoinColumn(name = "plus_one_meal_id")
 	private int plus_one_meal_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
@@ -84,7 +85,7 @@ public class Users {
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToMany (mappedBy="wedding_id", fetch=FetchType.EAGER) 
+	@OneToOne (mappedBy="wedding_id", fetch=FetchType.EAGER) 
 	@JoinColumn(name = "wedding_id")
 	//@Column(name = "wedding_id")
 	private int wedding_id;
