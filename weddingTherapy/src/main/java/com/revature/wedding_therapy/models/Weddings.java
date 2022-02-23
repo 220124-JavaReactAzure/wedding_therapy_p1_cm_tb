@@ -2,9 +2,13 @@ package com.revature.wedding_therapy.models;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,31 +16,41 @@ import javax.persistence.Table;
 public class Weddings {
 
 	@Id
-	@Column(name="wedding_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "wedding_id")
+	//@Column(name="wedding_id")
 	private int wedding_id;
-
-	@Column(name="wedding_name")
+	
+	//this field must not be null, and not blank
+	@Column(name="wedding_name", nullable = false, columnDefinition = "VARCHAR CHECK (wedding_name <> '')")
 	private String wedding_name;
 
-	@Column(name="wedding_date")
+	//this field must not be null, and not blank
+	@Column(name="wedding_date", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (email <> '')")
 	private String wedding_date;
 
-	@Column(name="wedding_budget")
+	//This field is not unique but cannot be null
+	@Column(name="wedding_budget", nullable = false)
 	private double wedding_budget;
 
-	@Column(name="caterer_id")
+	//This field is not unique but cannot be null
+	@Column(name="caterer_id", nullable = false)
 	private int caterer_id;
 
-	@Column(name="florist_id")
+	//This field is not unique but cannot be null
+	@Column(name="florist_id", nullable = false)
 	private int florist_id;
 
-	@Column(name="musician_id")
+	//This field is not unique but cannot be null
+	@Column(name="musician_id", nullable = false)
 	private int musician_id;
 
-	@Column(name="photographer_id")
+	//This field is not unique but cannot be null
+	@Column(name="photographer_id", nullable = false)
 	private int photographer_id;
 
-	@Column(name="venue_id")
+	//This field is not unique but cannot be null
+	@Column(name="venue_id", nullable = false)
 	private int venue_id;
 
 	
