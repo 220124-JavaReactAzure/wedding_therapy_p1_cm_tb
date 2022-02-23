@@ -4,9 +4,14 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -51,7 +56,9 @@ public class Users {
 	
 	
 	///////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@Column(name = "meal_id")
+	@OneToMany (mappedBy="meal_id", fetch=FetchType.EAGER) 
+	@JoinColumn(name = "meal_id")
+	//@JsonIgnoreProperties(value = "meal_type")
 	private int meal_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
@@ -63,7 +70,8 @@ public class Users {
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@Column(name = "plus_one_meal_id")
+	@OneToMany (mappedBy="meal_id", fetch=FetchType.EAGER) 
+	@JoinColumn(name = "plus_one_meal_id")
 	private int plus_one_meal_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
@@ -76,9 +84,12 @@ public class Users {
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@Column(name = "wedding_id")
+	@OneToMany (mappedBy="wedding_id", fetch=FetchType.EAGER) 
+	@JoinColumn(name = "wedding_id")
+	//@Column(name = "wedding_id")
 	private int wedding_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
+
 	
 	// CONSTRUCTORS
 	// Default Constructor

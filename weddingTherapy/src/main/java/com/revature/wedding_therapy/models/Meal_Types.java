@@ -2,9 +2,13 @@ package com.revature.wedding_therapy.models;
 
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +16,8 @@ import javax.persistence.Table;
 public class Meal_Types {
 
 	@Id
-	@Column(name = "meal_id")
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "meal_id")
 	private int meal_id;
 	
 	@Column(name = "meal_type")
