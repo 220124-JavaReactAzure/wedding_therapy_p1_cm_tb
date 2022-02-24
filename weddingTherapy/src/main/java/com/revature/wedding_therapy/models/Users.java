@@ -22,74 +22,84 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "users")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")  // Helps stop serialization recursion
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "user_id")  // Helps stop serialization recursion
 public class Users {
 	
 	@Id //Makes this field the table's Primary Key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //Makes the PK serialized
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) //Makes the PK serialized
 	@Column(name = "user_id")
 	private int user_id;
 
 	//This field is not unique but cannot be null or blank
-	@Column(name = "wedding_roll", nullable = false, columnDefinition = "VARCHAR CHECK (wedding_roll <> '')")
-	private String wedding_roll;
+	//nullable = false, columnDefinition = "VARCHAR CHECK (wedding_roll <> '')")
+//	@Column(name = "wedding_roll")
+//	private String wedding_roll;
 
 	//this field must not be null, and not blank
-	@Column(name = "firstname", nullable = false, columnDefinition = "VARCHAR CHECK (firstname <> '')")
+	//, nullable = false, columnDefinition = "VARCHAR CHECK (firstname <> '')")
+	@Column(name = "firstname")
 	private String firstname;
 
 	//this field must not be null, and not blank
-	@Column(name = "lastname", nullable = false, columnDefinition = "VARCHAR CHECK (lastname <> '')")
+	//, nullable = false, columnDefinition = "VARCHAR CHECK (lastname <> '')")
+	@Column(name = "lastname")
 	private String lastname;
 
 	//this field must be unique, not null, and not blank
-	@Column(name = "email", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (email <> '')")
+	//, unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (email <> '')")
+	@Column(name = "email")
 	private String email;
 
 	//this field must be unique, not null, and not blank
-	@Column(name = "username", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (username <> '')")
-	private String username;
+	//, unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (username <> '')")
+//	@Column(name = "username")
+//	private String username;
 
 	//this field must be unique, not null, and not blank
-	@Column(name = "password", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (password <> '')")
-	private String password;
+	//, unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (password <> '')")
+//	@Column(name = "password")
+//	private String password;
 
 	
 	
 	///////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@ManyToOne (fetch=FetchType.EAGER) 
-	@JoinColumn(name = "meal_type")
+	//@ManyToOne (fetch=FetchType.EAGER) 
+	//@JoinColumn(name = "meal_type")
 	//@JsonIgnoreProperties(value = "meal_type")
-	private Meal_Types meal_type;
+	@Column(name = "meal_id")
+	private int meal_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
 	
 	//This field is not unique but cannot be null
-	@Column(name = "plus_one", nullable = false)
+	//, nullable = false)
+	@Column(name = "plus_one")
 	private boolean plus_one;
 	
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@ManyToOne (fetch=FetchType.EAGER)
-	@JoinColumn(name = "plus_one_meal_type")
-	private Meal_Types plus_one_meal_type;
+	//@ManyToOne (fetch=FetchType.EAGER)
+	//@JoinColumn(name = "plus_one_meal_type")
+	@Column(name = "plus_one_meal_id")
+	private int plus_one_meal_id;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
 	
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
+	//@OneToOne (mappedBy="wedding_id", fetch=FetchType.EAGER) 
+	//@JoinColumn(name = "wedding_id")
+	@Column(name = "wedding_id")
+	private int wedding_id;
+	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
+
+
 
 	//This field is not unique but cannot be null and only for bride or groom
-	@Column(name = "betrothed", nullable = false)
+	//, nullable = false)
+	@Column(name = "betrothed")
 	private boolean betrothed;
 
-	
-	
-	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToOne (mappedBy="wedding_id", fetch=FetchType.EAGER) 
-	@JoinColumn(name = "wedding_id")
-	//@Column(name = "wedding_id")
-	private Weddings wedding_name;
-	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 
 
 	// CONSTRUCTORS
@@ -99,22 +109,21 @@ public class Users {
 	}
 	
 	// Full-Arg Constructor
-	public Users(int user_id, String wedding_roll, String firstname, String lastname, String email, String username,
-			String password, Meal_Types meal_type, boolean plus_one, Meal_Types plus_one_meal_type, boolean betrothed,
-			Weddings wedding_name) {
+	public Users(int user_id, String firstname, String lastname, String email, int meal_id, boolean plus_one, 
+			int plus_one_meal_id, int wedding_id, boolean betrothed) {
 		super();
 		this.user_id = user_id;
-		this.wedding_roll = wedding_roll;
+		//this.wedding_roll = wedding_roll;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
-		this.username = username;
-		this.password = password;
-		this.meal_type = meal_type;
+//		this.username = username;
+//		this.password = password;
+		this.meal_id = meal_id;
 		this.plus_one = plus_one;
-		this.plus_one_meal_type = plus_one_meal_type;
+		this.plus_one_meal_id = plus_one_meal_id;
+		this.wedding_id = wedding_id;
 		this.betrothed = betrothed;
-		this.wedding_name = wedding_name;
 	}
 
 	// GETTERS & SETTERS
@@ -124,14 +133,6 @@ public class Users {
 
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
-	}
-
-	public String getWedding_roll() {
-		return wedding_roll;
-	}
-
-	public void setWedding_roll(String wedding_roll) {
-		this.wedding_roll = wedding_roll;
 	}
 
 	public String getFirstname() {
@@ -158,28 +159,12 @@ public class Users {
 		this.email = email;
 	}
 
-	public String getUsername() {
-		return username;
+	public int getMeal_id() {
+		return meal_id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Meal_Types getMeal_type() {
-		return meal_type;
-	}
-
-	public void setMeal_type(Meal_Types meal_type) {
-		this.meal_type = meal_type;
+	public void setMeal_id(int meal_id) {
+		this.meal_id = meal_id;
 	}
 
 	public boolean isPlus_one() {
@@ -190,12 +175,20 @@ public class Users {
 		this.plus_one = plus_one;
 	}
 
-	public Meal_Types getPlus_one_meal_type() {
-		return plus_one_meal_type;
+	public int getPlus_one_meal_id() {
+		return plus_one_meal_id;
 	}
 
-	public void setPlus_one_meal_type(Meal_Types plus_one_meal_type) {
-		this.plus_one_meal_type = plus_one_meal_type;
+	public void setPlus_one_meal_id(int plus_one_meal_id) {
+		this.plus_one_meal_id = plus_one_meal_id;
+	}
+
+	public int getWedding_id() {
+		return wedding_id;
+	}
+
+	public void setWedding_id(int wedding_id) {
+		this.wedding_id = wedding_id;
 	}
 
 	public boolean isBetrothed() {
@@ -206,31 +199,24 @@ public class Users {
 		this.betrothed = betrothed;
 	}
 
-	public Weddings getWedding_name() {
-		return wedding_name;
-	}
-
-	public void setWedding_name(Weddings wedding_name) {
-		this.wedding_name = wedding_name;
-	}
-
 	// TOSTRING METHOD
 	@Override
 	public String toString() {
-		return "Users [user_id=" + user_id + ", wedding_roll=" + wedding_roll + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", meal_type=" + meal_type + ", plus_one=" + plus_one + ", plus_one_meal_type=" + plus_one_meal_type
-				+ ", betrothed=" + betrothed + ", wedding_name=" + wedding_name + "]";
+		return "Users [user_id=" + user_id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
+				+ ", meal_id=" + meal_id + ", plus_one=" + plus_one + ", plus_one_meal_id=" + plus_one_meal_id
+				+ ", wedding_id=" + wedding_id + ", betrothed=" + betrothed + "]";
 	}
 
+	
 	// HASHCODE METHOD
 	@Override
 	public int hashCode() {
-		return Objects.hash(betrothed, email, firstname, lastname, meal_type, password, plus_one, plus_one_meal_type,
-				user_id, username, wedding_name, wedding_roll);
+		return Objects.hash(betrothed, email, firstname, lastname, meal_id, plus_one, plus_one_meal_id, user_id,
+				wedding_id);
 	}
 
-	//EQUALS METHOD
+	
+	// HASHCODE METHOD
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -242,10 +228,9 @@ public class Users {
 		Users other = (Users) obj;
 		return betrothed == other.betrothed && Objects.equals(email, other.email)
 				&& Objects.equals(firstname, other.firstname) && Objects.equals(lastname, other.lastname)
-				&& Objects.equals(meal_type, other.meal_type) && Objects.equals(password, other.password)
-				&& plus_one == other.plus_one && Objects.equals(plus_one_meal_type, other.plus_one_meal_type)
-				&& user_id == other.user_id && Objects.equals(username, other.username)
-				&& Objects.equals(wedding_name, other.wedding_name) && Objects.equals(wedding_roll, other.wedding_roll);
+				&& meal_id == other.meal_id && plus_one == other.plus_one && plus_one_meal_id == other.plus_one_meal_id
+				&& user_id == other.user_id && wedding_id == other.wedding_id;
 	}
+	
 		
 }

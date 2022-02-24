@@ -5,7 +5,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +17,7 @@ import com.revature.wedding_therapy.web.servlet.*;
 @WebListener
 public class ContextLoaderListener implements ServletContextListener{
 
-	private final Logger logger = LogManager.getLogger(ContextLoaderListener.class);
+	private final Logger logger = LogManager.getLogger();
 	
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {

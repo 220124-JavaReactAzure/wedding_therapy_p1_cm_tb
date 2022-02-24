@@ -20,15 +20,15 @@ import javax.persistence.Table;
 public class Meal_Types {
 
 	@Id //Makes this field the table's Primary Key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //Makes the PK serialized
+	//@GeneratedValue(strategy = GenerationType.IDENTITY) //Makes the PK serialized
 	@Column(name = "meal_id")
 	private int meal_id;
 	
 	@Column(name = "meal_type")
 	private String meal_type;
 	
-	@OneToMany(mappedBy = "meal_types")
-	private List<Users> allusers;
+//	@OneToMany(mappedBy = "meal_types")
+//	private List<Users> allusers;
 	
 	
 	

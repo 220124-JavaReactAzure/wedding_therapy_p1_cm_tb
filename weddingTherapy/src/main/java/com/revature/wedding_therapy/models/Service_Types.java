@@ -5,6 +5,8 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +14,7 @@ import javax.persistence.Table;
 public class Service_Types {
 
 	@Id
+	//@OneToOne
 	@Column(name = "service_type_id")
 	private int service_type_id;
 	

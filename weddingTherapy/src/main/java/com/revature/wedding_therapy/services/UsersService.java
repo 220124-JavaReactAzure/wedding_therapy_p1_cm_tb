@@ -25,5 +25,20 @@ public class UsersService {
 		System.out.print("\nUsersService:getAllUsers\n");
 		return usersDAO.getAllUsers();
 	}
+	
+	public Users getUserId(int id) {
+		System.out.print("\nUsersService:getUserId\n");
+		return usersDAO.getUserById(id);
+	}
+	
+	public boolean updateUsers(Users user) {
+		System.out.print("\nUsersService:updateUsers\n");
+		return usersDAO.updateUsers(user);
+	}
+	
+	public boolean deleteUsers(int id) {
+		System.out.print("\nUsersService:deleteUsers\n");
+		return usersDAO.deleteUsers(id);
+	}
 
 }

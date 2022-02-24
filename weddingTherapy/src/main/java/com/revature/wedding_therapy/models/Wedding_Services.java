@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +22,7 @@ public class Wedding_Services {
 	@Column(name = "service_cost")
 	private double service_cost;
 
+	//@OneToOne(mappedBy = "service_type_id")
 	@Column(name = "service_type_id")
 	private int service_type_id;
 

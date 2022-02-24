@@ -22,39 +22,46 @@ public class Weddings {
 	private int wedding_id;
 	
 	//this field must not be null, and not blank
-	@Column(name="wedding_name", nullable = false)
+	//, nullable = false)
+	@Column(name="wedding_name")
 	private String wedding_name;
 
 	//this field must not be null, and not blank
-	@Column(name="wedding_date", unique = true, nullable = false)
+	//, unique = true, nullable = false)
+	@Column(name="wedding_date")
 	private String wedding_date;
 
 	//This field is not unique but cannot be null
-	@Column(name="wedding_budget", nullable = false)
+	//, nullable = false)
+	@Column(name="wedding_budget")
 	private double wedding_budget;
 
 	//This field is not unique but cannot be null
-	@Column(name="caterer_id", nullable = false)
+	//, nullable = false)
+	@Column(name="venue_id")
+	private int venue_id;
+
+	//This field is not unique but cannot be null
+	//, nullable = false)
+	@Column(name="musician_id")
+	private int musician_id;
+	
+	//This field is not unique but cannot be null
+	//, nullable = false)
+	@Column(name="caterer_id")
 	private int caterer_id;
 
 	//This field is not unique but cannot be null
-	@Column(name="florist_id", nullable = false)
+	//, nullable = false)
+	@Column(name="florist_id")
 	private int florist_id;
 
-	//This field is not unique but cannot be null
-	@Column(name="musician_id", nullable = false)
-	private int musician_id;
 
 	//This field is not unique but cannot be null
-	@Column(name="photographer_id", nullable = false)
+	//, nullable = false)
+	@Column(name="photographer_id")
 	private int photographer_id;
 
-	//This field is not unique but cannot be null
-	@Column(name="venue_id", nullable = false)
-	private int venue_id;
-
-	@OneToMany(mappedBy = "wedding_name")
-	private List<Users> allusers;
 	
 	// CONSTRUCTORS
 	// Default Constructor
