@@ -14,6 +14,7 @@ public class WeddingDAO {
 
 	public boolean createNewWedding(Weddings newWedding) {
 		try {
+			System.out.print("\nWeddingDAO:createNewwedding\n");
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
 			
@@ -30,6 +31,7 @@ public class WeddingDAO {
 	
 	@SuppressWarnings("unchecked")
 	public List<Weddings> findAllWeddings(){
+		System.out.print("\nWeddingDAO:findAllWeddings\n");
 		List<Weddings> weddingList = null;
 		
 		try {
@@ -48,6 +50,7 @@ public class WeddingDAO {
 	}
 
 	public Weddings findWeddingByID(int id) {
+		System.out.print("\nWeddingDAO:findWeddingByID\n");
 		Weddings wedding = null;
 		try {
 			Session session = HibernateUtil.getSession();
@@ -66,6 +69,7 @@ public class WeddingDAO {
 
 	public boolean updateWedding(Weddings wedding) {
 		try {
+			System.out.print("\nWeddingDAO:updateWedding\n");
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
 			
@@ -82,6 +86,7 @@ public class WeddingDAO {
 
 	public boolean deleteWedding(int id) {
 		try {
+			System.out.print("\nWeddingDAO:deleteWedding\n");
 			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
 			

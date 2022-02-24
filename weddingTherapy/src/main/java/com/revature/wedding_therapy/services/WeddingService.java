@@ -17,6 +17,7 @@ public class WeddingService {
 	
 	
 	public boolean createNewWedding(Weddings newWedding) throws WeddingNotNamedException {
+		System.out.print("\nWeddingService:createNewWedding\n");
 		if(!validWedding(newWedding)){
 			throw new WeddingNotNamedException("Please Give This Wedding A Name!");
 		}
@@ -25,22 +26,26 @@ public class WeddingService {
 	
 	
 	public List<Weddings> findAllWeddings(){
+		System.out.print("\nWeddingService:findAllWeddings\n");
 		return weddingDAO.findAllWeddings();
 	}
 	
 	
 	public Weddings getWedding(int wedding_id) {
+		System.out.print("\nWeddingService:getWedding\n");
 		if(!validId(wedding_id)) {return null;}
 		return weddingDAO.findWeddingByID(wedding_id);
 	}
 	
 	
 	public boolean updateWedding(Weddings wedding) {
+		System.out.print("\nWeddingService:updateWedding\n");
 		return weddingDAO.updateWedding(wedding);
 	}
 	
 	
 	public boolean deleteWedding(int wedding_id) {
+		System.out.print("\nWeddingService:deleteWedding\n");
 		if(!validId(wedding_id)) {return false;}
 		return weddingDAO.deleteWedding(wedding_id);
 	}

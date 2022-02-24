@@ -18,17 +18,15 @@ import javax.persistence.Table;
 public class Weddings {
 
 	@Id
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "wedding_id")
-	//@Column(name="wedding_id")
+	@Column(name="wedding_id")
 	private int wedding_id;
 	
 	//this field must not be null, and not blank
-	@Column(name="wedding_name", nullable = false, columnDefinition = "VARCHAR CHECK (wedding_name <> '')")
+	@Column(name="wedding_name", nullable = false)
 	private String wedding_name;
 
 	//this field must not be null, and not blank
-	@Column(name="wedding_date", unique = true, nullable = false, columnDefinition = "VARCHAR CHECK (email <> '')")
+	@Column(name="wedding_date", unique = true, nullable = false)
 	private String wedding_date;
 
 	//This field is not unique but cannot be null

@@ -28,6 +28,7 @@ public class WeddingServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json");
+		System.out.print("\nWeddingServlet:doPost\n");
 		try {
 			Weddings newWedding = mapper.readValue(req.getInputStream(), Weddings.class);
 			boolean wasReg = weddingService.createNewWedding(newWedding);
@@ -51,6 +52,7 @@ public class WeddingServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.print("\nWeddingServlet:doGet\n");
 		// Switch statements are back sorry
 		PrintWriter writer = resp.getWriter();
 		// Obtains everything after the /directors
@@ -93,6 +95,7 @@ public class WeddingServlet extends HttpServlet {
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			System.out.print("\nWeddingServlet:doPut\n");
 			Weddings wedding = mapper.readValue(req.getInputStream(), Weddings.class);
 			weddingService.updateWedding(wedding);
 			resp.setStatus(204);
@@ -110,6 +113,7 @@ public class WeddingServlet extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+			System.out.print("\nWeddingServlet:doDelete\n");
 			PrintWriter writer = resp.getWriter();
 			String idParam = req.getParameter("weddingId");
 			if (idParam == null) {
