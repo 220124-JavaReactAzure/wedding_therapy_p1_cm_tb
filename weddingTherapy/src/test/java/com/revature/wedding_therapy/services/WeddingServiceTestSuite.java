@@ -33,53 +33,24 @@ public class WeddingServiceTestSuite {
 		
 		Assert.assertTrue(sut.createNewWedding(validWedding));
 		
-		try {
-			Weddings nullName = new Weddings(12345, null, "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
-			sut.createNewWedding(nullName);
-		}catch(WeddingNotNamedException e) {
-			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
-		}
+		Weddings nullName = new Weddings(12345, null, "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
+		Assert.assertThrows(WeddingNotNamedException.class, () -> sut.createNewWedding(nullName));
 		
-		try {
-			Weddings emptyName = new Weddings(12345, "", "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
-			sut.createNewWedding(emptyName);
-		}catch(WeddingNotNamedException e) {
-			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
-		}
+		Weddings emptyName = new Weddings(12345, "", "jan 1, 2023", 5555.55, 0, 0, 0, 0, 0);
+		Assert.assertThrows(WeddingNotNamedException.class, () -> sut.createNewWedding(emptyName));
 		
-		try {
-			Weddings nullDate = new Weddings(12345, "TestWedding", null, 5555.55, 0, 0, 0, 0, 0);
-			sut.createNewWedding(nullDate);
-		}catch(WeddingNotNamedException e) {
-			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
-		}
-		
-		try {
-			Weddings emptyDate = new Weddings(12345, "TestWedding", "", 5555.55, 0, 0, 0, 0, 0);
-			sut.createNewWedding(emptyDate);
-		}catch(WeddingNotNamedException e) {
-			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
-		}
-		
-		try {
-			Weddings inValidbudget = new Weddings(12345, "TestWedding", "jan 1, 2023", 0.2, 0, 0, 0, 0, 0);
-			sut.createNewWedding(inValidbudget);
-		}catch(WeddingNotNamedException e) {
-			Assert.assertEquals(e.getClass(), WeddingNotNamedException.class);
-		}
+		Weddings nullDate = new Weddings(12345, "TestWedding", null, 5555.55, 0, 0, 0, 0, 0);
+		Assert.assertThrows(WeddingNotNamedException.class, () -> sut.createNewWedding(nullDate));
 		
 		
+		Weddings emptyDate = new Weddings(12345, "TestWedding", "", 5555.55, 0, 0, 0, 0, 0);
+		Assert.assertThrows(WeddingNotNamedException.class, () -> sut.createNewWedding(emptyDate));
+		
+		Weddings inValidbudget = new Weddings(12345, "TestWedding", "jan 1, 2023", 0, 0, 0, 0, 0, 0);
+		Assert.assertThrows(WeddingNotNamedException.class, () -> sut.createNewWedding(inValidbudget));
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-	}
+	}//test_createNewWeddings
 	
 	
 	@Test
