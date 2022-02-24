@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,8 +39,8 @@ public class Weddings {
 
 	//This field is not unique but cannot be null
 	//, nullable = false)
-	@Column(name="venue_id")
-	private int venue_id;
+	@OneToOne
+	private Wedding_Services venue;
 
 	//This field is not unique but cannot be null
 	//, nullable = false)
