@@ -1,5 +1,6 @@
 package com.revature.wedding_therapy.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -53,6 +55,8 @@ public class Weddings {
 	@Column(name="venue_id", nullable = false)
 	private int venue_id;
 
+	@OneToMany(mappedBy = "wedding_name")
+	private List<Users> allusers;
 	
 	// CONSTRUCTORS
 	// Default Constructor

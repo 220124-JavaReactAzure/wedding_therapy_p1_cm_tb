@@ -56,10 +56,10 @@ public class Users {
 	
 	
 	///////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToMany (mappedBy="meal_id", fetch=FetchType.EAGER) 
-	@JoinColumn(name = "meal_id")
+	@ManyToOne (fetch=FetchType.EAGER) 
+	@JoinColumn(name = "meal_type")
 	//@JsonIgnoreProperties(value = "meal_type")
-	private int meal_id;
+	private Meal_Types meal_type;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
 	
@@ -70,9 +70,9 @@ public class Users {
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToMany (mappedBy="meal_id", fetch=FetchType.EAGER) 
-	@JoinColumn(name = "plus_one_meal_id")
-	private int plus_one_meal_id;
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn(name = "plus_one_meal_type")
+	private Meal_Types plus_one_meal_type;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 	
 	
@@ -84,22 +84,23 @@ public class Users {
 	
 	
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
-	@OneToMany (mappedBy="wedding_id", fetch=FetchType.EAGER) 
-	@JoinColumn(name = "wedding_id")
+	@ManyToOne (fetch=FetchType.EAGER)
+	@JoinColumn(name = "wedding_name")
 	//@Column(name = "wedding_id")
-	private int wedding_id;
+	private Weddings wedding_name;
 	/////////////// TODO: should this field be set up as a one to many or many to one relationship?
 
-	
+
 	// CONSTRUCTORS
 	// Default Constructor
 	public Users() {
 		super();
 	}
-
+	
 	// Full-Arg Constructor
 	public Users(int user_id, String wedding_roll, String firstname, String lastname, String email, String username,
-			String password, int meal_id, boolean plus_one, int plus_one_meal_id, boolean betrothed, int wedding_id) {
+			String password, Meal_Types meal_type, boolean plus_one, Meal_Types plus_one_meal_type, boolean betrothed,
+			Weddings wedding_name) {
 		super();
 		this.user_id = user_id;
 		this.wedding_roll = wedding_roll;
@@ -108,14 +109,13 @@ public class Users {
 		this.email = email;
 		this.username = username;
 		this.password = password;
-		this.meal_id = meal_id;
+		this.meal_type = meal_type;
 		this.plus_one = plus_one;
-		this.plus_one_meal_id = plus_one_meal_id;
+		this.plus_one_meal_type = plus_one_meal_type;
 		this.betrothed = betrothed;
-		this.wedding_id = wedding_id;
+		this.wedding_name = wedding_name;
 	}
 
-	
 	// GETTERS & SETTERS
 	public int getUser_id() {
 		return user_id;
@@ -173,12 +173,12 @@ public class Users {
 		this.password = password;
 	}
 
-	public int getMeal_id() {
-		return meal_id;
+	public Meal_Types getMeal_type() {
+		return meal_type;
 	}
 
-	public void setMeal_id(int meal_id) {
-		this.meal_id = meal_id;
+	public void setMeal_type(Meal_Types meal_type) {
+		this.meal_type = meal_type;
 	}
 
 	public boolean isPlus_one() {
@@ -189,12 +189,12 @@ public class Users {
 		this.plus_one = plus_one;
 	}
 
-	public int getPlus_one_meal_id() {
-		return plus_one_meal_id;
+	public Meal_Types getPlus_one_meal_type() {
+		return plus_one_meal_type;
 	}
 
-	public void setPlus_one_meal_id(int plus_one_meal_id) {
-		this.plus_one_meal_id = plus_one_meal_id;
+	public void setPlus_one_meal_type(Meal_Types plus_one_meal_type) {
+		this.plus_one_meal_type = plus_one_meal_type;
 	}
 
 	public boolean isBetrothed() {
@@ -205,30 +205,28 @@ public class Users {
 		this.betrothed = betrothed;
 	}
 
-	public int getWedding_id() {
-		return wedding_id;
+	public Weddings getWedding_name() {
+		return wedding_name;
 	}
 
-	public void setWedding_id(int wedding_id) {
-		this.wedding_id = wedding_id;
+	public void setWedding_name(Weddings wedding_name) {
+		this.wedding_name = wedding_name;
 	}
 
-	
 	// TOSTRING METHOD
 	@Override
 	public String toString() {
 		return "Users [user_id=" + user_id + ", wedding_roll=" + wedding_roll + ", firstname=" + firstname
 				+ ", lastname=" + lastname + ", email=" + email + ", username=" + username + ", password=" + password
-				+ ", meal_id=" + meal_id + ", plus_one=" + plus_one + ", plus_one_meal_id=" + plus_one_meal_id
-				+ ", betrothed=" + betrothed + ", wedding_id=" + wedding_id + "]";
+				+ ", meal_type=" + meal_type + ", plus_one=" + plus_one + ", plus_one_meal_type=" + plus_one_meal_type
+				+ ", betrothed=" + betrothed + ", wedding_name=" + wedding_name + "]";
 	}
 
-	
 	// HASHCODE METHOD
 	@Override
 	public int hashCode() {
-		return Objects.hash(betrothed, email, firstname, lastname, meal_id, password, plus_one, plus_one_meal_id,
-				user_id, username, wedding_id, wedding_roll);
+		return Objects.hash(betrothed, email, firstname, lastname, meal_type, password, plus_one, plus_one_meal_type,
+				user_id, username, wedding_name, wedding_roll);
 	}
 
 	//EQUALS METHOD
@@ -243,13 +241,10 @@ public class Users {
 		Users other = (Users) obj;
 		return betrothed == other.betrothed && Objects.equals(email, other.email)
 				&& Objects.equals(firstname, other.firstname) && Objects.equals(lastname, other.lastname)
-				&& meal_id == other.meal_id && Objects.equals(password, other.password) && plus_one == other.plus_one
-				&& plus_one_meal_id == other.plus_one_meal_id && user_id == other.user_id
-				&& Objects.equals(username, other.username) && wedding_id == other.wedding_id
-				&& Objects.equals(wedding_roll, other.wedding_roll);
+				&& Objects.equals(meal_type, other.meal_type) && Objects.equals(password, other.password)
+				&& plus_one == other.plus_one && Objects.equals(plus_one_meal_type, other.plus_one_meal_type)
+				&& user_id == other.user_id && Objects.equals(username, other.username)
+				&& Objects.equals(wedding_name, other.wedding_name) && Objects.equals(wedding_roll, other.wedding_roll);
 	}
-	
-	
-	
-	
+		
 }
