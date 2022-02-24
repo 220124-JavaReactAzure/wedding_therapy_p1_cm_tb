@@ -8,6 +8,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.wedding_therapy.models.Service_Types;
 import com.revature.wedding_therapy.models.Wedding_Services;
 import com.revature.wedding_therapy.models.Weddings;
 import com.revature.wedding_therapy.util.HibernateUtil;
@@ -16,11 +17,13 @@ public class Wedding_ServicesDAO {
 
 	public boolean createNewWedding_Services(Wedding_Services wedservice) {
 		try {
-			//System.out.println("\nWedding_ServicesDAO:createNewWedding_Services\n");
+			System.out.println("\nWedding_ServicesDAO:createNewWedding_Services\n");
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
+			
 			session.save(wedservice);
 			trans.commit();
+			
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return false;
@@ -52,8 +55,10 @@ public class Wedding_ServicesDAO {
 		try {
 			Session session = HibernateUtil.getSession();
 			Transaction trans = session.beginTransaction();
+			
 			wedService = session.get(Wedding_Services.class, weddingServicesId);
 			trans.commit();
+			
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return null;
@@ -65,11 +70,14 @@ public class Wedding_ServicesDAO {
 	
 	public boolean updateWedding_Services(Wedding_Services wedService) {
 		try {
-			Session session = HibernateUtil.getSession();
+			System.out.print("\nWedding_ServicesDAO:updateWedding_services");
 			
+			Session session = HibernateUtil.getSession();
 			Transaction transaction = session.beginTransaction();
+			
 			session.merge(wedService);
 			transaction.commit();
+			
 		} catch (HibernateException | IOException e) {
 			e.printStackTrace();
 			return false;

@@ -22,9 +22,11 @@ public class Wedding_Services {
 	@Column(name = "service_cost")
 	private double service_cost;
 
-	//@OneToOne(mappedBy = "service_type_id")
-	@Column(name = "service_type_id")
-	private int service_type_id;
+//	@Column(name = "service_type_id")
+//	private int service_type_id;
+	
+	@OneToOne
+	private Service_Types service_type;
 
 	
 	// CONSTRUCTORS
@@ -35,16 +37,14 @@ public class Wedding_Services {
 	}
 
 	// Full-Arg Constructor
-	public Wedding_Services(int service_id, String service_name, double service_cost, int service_type_id) {
+	public Wedding_Services(int service_id, String service_name, double service_cost, Service_Types service_type) {
 		super();
 		this.service_id = service_id;
 		this.service_name = service_name;
 		this.service_cost = service_cost;
-		this.service_type_id = service_type_id;
+		this.service_type = service_type;
 	}
 
-	
-	// GETTERS & SETTERS
 	public int getService_id() {
 		return service_id;
 	}
@@ -69,27 +69,23 @@ public class Wedding_Services {
 		this.service_cost = service_cost;
 	}
 
-	public int getService_type_id() {
-		return service_type_id;
+	public Service_Types getService_type() {
+		return service_type;
 	}
 
-	public void setService_type_id(int service_type_id) {
-		this.service_type_id = service_type_id;
+	public void setService_type(Service_Types service_type) {
+		this.service_type = service_type;
 	}
 
-	
-	// TOSTRING METHOD
 	@Override
 	public String toString() {
 		return "Wedding_Services [service_id=" + service_id + ", service_name=" + service_name + ", service_cost="
-				+ service_cost + ", service_type_id=" + service_type_id + "]";
+				+ service_cost + ", service_type=" + service_type + "]";
 	}
 
-	
-	// HASHCODE
 	@Override
 	public int hashCode() {
-		return Objects.hash(service_cost, service_id, service_name, service_type_id);
+		return Objects.hash(service_cost, service_id, service_name, service_type);
 	}
 
 	@Override
@@ -103,7 +99,11 @@ public class Wedding_Services {
 		Wedding_Services other = (Wedding_Services) obj;
 		return Double.doubleToLongBits(service_cost) == Double.doubleToLongBits(other.service_cost)
 				&& service_id == other.service_id && Objects.equals(service_name, other.service_name)
-				&& service_type_id == other.service_type_id;
+				&& Objects.equals(service_type, other.service_type);
 	}
+
+	
+
+	
 	
 }
