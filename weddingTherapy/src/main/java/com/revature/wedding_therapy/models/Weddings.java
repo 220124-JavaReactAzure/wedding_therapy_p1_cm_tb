@@ -37,31 +37,21 @@ public class Weddings {
 	@Column(name="wedding_budget")
 	private double wedding_budget;
 
-	//This field is not unique but cannot be null
-	//, nullable = false)
+	//columnDefinition = "VARCHAR CHECK (firstname <> '')")
 	@OneToOne
 	private Wedding_Services venue;
 
-	//This field is not unique but cannot be null
-	//, nullable = false)
-	@Column(name="musician_id")
-	private int musician_id;
+	@OneToOne
+	private Wedding_Services musician;
 	
-	//This field is not unique but cannot be null
-	//, nullable = false)
-	@Column(name="caterer_id")
-	private int caterer_id;
+	@OneToOne
+	private Wedding_Services caterer;
 
-	//This field is not unique but cannot be null
-	//, nullable = false)
-	@Column(name="florist_id")
-	private int florist_id;
+	@OneToOne
+	private Wedding_Services florist;
 
-
-	//This field is not unique but cannot be null
-	//, nullable = false)
-	@Column(name="photographer_id")
-	private int photographer_id;
+	@OneToOne
+	private Wedding_Services photographer;
 
 	
 	// CONSTRUCTORS
@@ -71,24 +61,24 @@ public class Weddings {
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	// Full-Arg Constructor
 	public Weddings(int wedding_id, String wedding_name, String wedding_date, 
-			double wedding_budget, int caterer_id,int florist_id, int musician_id, 
-			int photographer_id, int venue_id) {
+			double wedding_budget, Wedding_Services caterer, Wedding_Services florist, Wedding_Services musician, 
+			Wedding_Services photographer, Wedding_Services venue) {
 		super();
 		this.wedding_id = wedding_id;
 		this.wedding_name = wedding_name;
 		this.wedding_date = wedding_date;
 		this.wedding_budget = wedding_budget;
-		this.caterer_id = caterer_id;
-		this.florist_id = florist_id;
-		this.musician_id = musician_id;
-		this.photographer_id = photographer_id;
-		this.venue_id = venue_id;
+		this.caterer = caterer;
+		this.florist = florist;
+		this.musician = musician;
+		this.photographer = photographer;
+		this.venue = venue;
 	}
 
 	
-	// GETTERS & SETTERS
 	public int getWedding_id() {
 		return wedding_id;
 	}
@@ -121,66 +111,62 @@ public class Weddings {
 		this.wedding_budget = wedding_budget;
 	}
 
-	public int getCaterer_id() {
-		return caterer_id;
+	public Wedding_Services getVenue() {
+		return venue;
 	}
 
-	public void setCaterer_id(int caterer_id) {
-		this.caterer_id = caterer_id;
+	public void setVenue(Wedding_Services venue) {
+		this.venue = venue;
 	}
 
-	public int getFlorist_id() {
-		return florist_id;
+	public Wedding_Services getMusician() {
+		return musician;
 	}
 
-	public void setFlorist_id(int florist_id) {
-		this.florist_id = florist_id;
+	public void setMusician(Wedding_Services musician) {
+		this.musician = musician;
 	}
 
-	public int getMusician_id() {
-		return musician_id;
+	public Wedding_Services getCaterer() {
+		return caterer;
 	}
 
-	public void setMusician_id(int musician_id) {
-		this.musician_id = musician_id;
+	public void setCaterer(Wedding_Services caterer) {
+		this.caterer = caterer;
 	}
 
-	public int getPhotographer_id() {
-		return photographer_id;
+	public Wedding_Services getFlorist() {
+		return florist;
 	}
 
-	public void setPhotographer_id(int photographer_id) {
-		this.photographer_id = photographer_id;
+	public void setFlorist(Wedding_Services florist) {
+		this.florist = florist;
 	}
 
-	public int getVenue_id() {
-		return venue_id;
+	public Wedding_Services getPhotographer() {
+		return photographer;
 	}
 
-	public void setVenue_id(int venue_id) {
-		this.venue_id = venue_id;
+	public void setPhotographer(Wedding_Services photographer) {
+		this.photographer = photographer;
 	}
 
-	
-	// TOSTRING METHOD
+
 	@Override
 	public String toString() {
 		return "Weddings [wedding_id=" + wedding_id + ", wedding_name=" + wedding_name + ", wedding_date="
-				+ wedding_date + ", wedding_budget=" + wedding_budget + ", caterer_id=" + caterer_id + ", florist_id="
-				+ florist_id + ", musician_id=" + musician_id + ", photographer_id=" + photographer_id + ", venue_id="
-				+ venue_id + "]";
+				+ wedding_date + ", wedding_budget=" + wedding_budget + ", venue=" + venue + ", musician=" + musician
+				+ ", caterer=" + caterer + ", florist=" + florist + ", photographer=" + photographer + "]";
 	}
 
-	
-	// HASHCODE METHOD
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(caterer_id, florist_id, musician_id, photographer_id, venue_id, wedding_budget,
-				wedding_date, wedding_id, wedding_name);
+		return Objects.hash(caterer, florist, musician, photographer, venue, wedding_budget, wedding_date, wedding_id,
+				wedding_name);
 	}
 
-	
-	//EQUALS METHOD
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -190,11 +176,14 @@ public class Weddings {
 		if (getClass() != obj.getClass())
 			return false;
 		Weddings other = (Weddings) obj;
-		return caterer_id == other.caterer_id && florist_id == other.florist_id && musician_id == other.musician_id
-				&& photographer_id == other.photographer_id && venue_id == other.venue_id
+		return Objects.equals(caterer, other.caterer) && Objects.equals(florist, other.florist)
+				&& Objects.equals(musician, other.musician) && Objects.equals(photographer, other.photographer)
+				&& Objects.equals(venue, other.venue)
 				&& Double.doubleToLongBits(wedding_budget) == Double.doubleToLongBits(other.wedding_budget)
 				&& Objects.equals(wedding_date, other.wedding_date) && wedding_id == other.wedding_id
 				&& Objects.equals(wedding_name, other.wedding_name);
 	}
+
+	
 
 }
