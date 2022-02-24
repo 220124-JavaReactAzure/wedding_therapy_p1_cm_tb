@@ -1,27 +1,36 @@
 package com.revature.wedding_therapy.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "meal_types")
 public class Meal_Types {
 
-	@Id
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "meal_id")
+	@Id //Makes this field the table's Primary Key
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Makes the PK serialized
+	@Column(name = "meal_id")
 	private int meal_id;
 	
 	@Column(name = "meal_type")
 	private String meal_type;
+	
+	@OneToMany(mappedBy = "meal_types")
+	private List<Users> allusers;
+	
+	
 	
 	public Meal_Types() {
 		super();
