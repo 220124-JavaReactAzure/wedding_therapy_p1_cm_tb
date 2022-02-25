@@ -30,8 +30,6 @@ public class Meal_Types {
 //	@OneToMany(mappedBy = "meal_types")
 //	private List<Users> allusers;
 	
-	
-	
 	public Meal_Types() {
 		super();
 	}

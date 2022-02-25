@@ -21,6 +21,9 @@ public class WeddingService {
 		if(!validWedding(newWedding)){
 			throw new WeddingNotNamedException("Please Give This Wedding A Name!");
 		}
+		
+		if(!validWeddingServices(newWedding)) {return false;}
+		
 		return weddingDAO.createNewWedding(newWedding);
 	}
 	
@@ -40,6 +43,9 @@ public class WeddingService {
 	
 	public boolean updateWedding(Weddings wedding) {
 		System.out.print("\nWeddingService:updateWedding\n");
+		if(!validWedding(wedding) || !validWeddingServices(wedding)) {
+			return false;
+		}
 		return weddingDAO.updateWedding(wedding);
 	}
 	
@@ -51,18 +57,30 @@ public class WeddingService {
 	}
 	
 	
-	private boolean validWedding(Weddings newWedding) {
-		if(newWedding.getWedding_name() == null || newWedding.getWedding_name().equals("") || 
-				newWedding.getWedding_date() == null || newWedding.getWedding_date().equals("") || 
-		newWedding.getWedding_budget() <= 0 ) {
+	public boolean validWedding(Weddings newWedding) {
+		if(newWedding.getWedding_id() < 0 || newWedding.getWedding_id() > 99999 || newWedding.getWedding_name() == null || 
+				newWedding.getWedding_name().trim().equals("") || newWedding.getWedding_date() == null || 
+				newWedding.getWedding_date().trim().equals("") || 
+					newWedding.getWedding_budget() < 0 ) {
 			return false;
 		}
 		return true;
 	}
+	
+	public boolean validWeddingServices(Weddings wedding) {
+		if( !(wedding.getCaterer().getService_type().getService().equals("caterers") || wedding.getCaterer().getService_type().getService().equals("Empty")) ||
+			!(wedding.getFlorist().getService_type().getService().equals("florists") || wedding.getFlorist().getService_type().getService().equals("Empty")) ||
+			!(wedding.getMusician().getService_type().getService().equals("musician") || wedding.getMusician().getService_type().getService().equals("Empty")) ||
+		   !(wedding.getPhotographer().getService_type().getService().equals("photographers") || wedding.getPhotographer().getService_type().getService().equals("Empty")) ||
+			!(wedding.getVenue().getService_type().getService().equals("venues") || wedding.getVenue().getService_type().getService().equals("Empty"))
+			) {return false;}
+		return true;
+			
+	}
 
 	
-	private boolean validId(int id) {
-		if(99999 >= id && id >= 1) {
+	public boolean validId(int id) {
+		if(99999 >= id && id >= 0) {
 			return true;
 		}
 		return false;
