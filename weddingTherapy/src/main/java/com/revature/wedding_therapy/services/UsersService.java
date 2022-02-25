@@ -20,7 +20,7 @@ public class UsersService {
 	public boolean createNewUsers(Users account) throws InvalidRequestException {
 		System.out.print("\nUsersService:createNewUsers\n");
 		if(!isUsersValid(account)) {
-			throw new InvalidRequestException("Invalid user data provider");
+			throw new InvalidRequestException("Invalid user information provided");
 		}
 		return usersDAO.createNewUser(account);
 	}
