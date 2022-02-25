@@ -25,9 +25,7 @@ The Wedding Therapy project allows a user to create an account and show whether 
 # Entity Relationship Diagram 
 ![](./P1-ERD.png)
 
-#Contributors:
-Christian Mains
-Tracy Bodine
+#Contributors: Christian Mains and Tracy Bodine
 
-#Future goals: 
+#Future goals: Continue working on the app to add additional features and further improve testing and mocking.
 
