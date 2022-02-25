@@ -3,6 +3,7 @@ package com.revature.wedding_therapy.services;
 import java.util.List;
 
 import com.revature.wedding_therapy.dao.UsersDAO;
+import com.revature.wedding_therapy.exceptions.InvalidRequestException;
 import com.revature.wedding_therapy.models.Users;
 
 public class UsersService {
@@ -16,11 +17,14 @@ public class UsersService {
 	}
 	
 	
-	public boolean createNewUsers(Users account) {
+	public boolean createNewUsers(Users account) throws InvalidRequestException {
 		System.out.print("\nUsersService:createNewUsers\n");
+		if(!isUsersValid(account)) {
+			throw new InvalidRequestException("Invalid user data provider");
+		}
 		return usersDAO.createNewUser(account);
 	}
-	
+
 	public List<Users> getAllUsers(){
 		System.out.print("\nUsersService:getAllUsers\n");
 		return usersDAO.getAllUsers();
@@ -41,4 +45,15 @@ public class UsersService {
 		return usersDAO.deleteUsers(id);
 	}
 
+	private boolean isUsersValid(Users account) {
+		if(account == null) return false;
+		if(account.getFirstname() == null || account.getFirstname().trim().equals("")) return false;
+		if(account.getLastname() == null || account.getLastname().trim().equals("")) return false;
+		if(account.getEmail() == null || account.getEmail().trim().equals("")) return false;
+		if(account.getMeal() == null) return false;
+		if(account.getPlus_one_meal() == null) return false;
+		if(account.getWedding() == null) return false;
+		return true;
+	}
+	
 }
