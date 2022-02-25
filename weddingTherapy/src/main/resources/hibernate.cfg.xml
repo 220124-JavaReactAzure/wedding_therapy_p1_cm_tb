@@ -20,7 +20,7 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <!-- DDL -->
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <!-- Anyone remember what setting our hbm2ddl.auto to create will do? -->
 		<!-- It will wipe all tables and data, and recreate it -->
 

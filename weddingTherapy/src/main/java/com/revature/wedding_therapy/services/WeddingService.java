@@ -22,8 +22,6 @@ public class WeddingService {
 			throw new WeddingNotNamedException("Please Give This Wedding A Name!");
 		}
 		
-		if(!validWeddingServices(newWedding)) {return false;}
-		
 		return weddingDAO.createNewWedding(newWedding);
 	}
 	
@@ -43,7 +41,7 @@ public class WeddingService {
 	
 	public boolean updateWedding(Weddings wedding) {
 		System.out.print("\nWeddingService:updateWedding\n");
-		if(!validWedding(wedding) || !validWeddingServices(wedding)) {
+		if(!validWedding(wedding)) {
 			return false;
 		}
 		return weddingDAO.updateWedding(wedding);
@@ -65,17 +63,6 @@ public class WeddingService {
 			return false;
 		}
 		return true;
-	}
-	
-	public boolean validWeddingServices(Weddings wedding) {
-		if( !(wedding.getCaterer().getService_type().getService().equals("caterers") || wedding.getCaterer().getService_type().getService().equals("Empty")) ||
-			!(wedding.getFlorist().getService_type().getService().equals("florists") || wedding.getFlorist().getService_type().getService().equals("Empty")) ||
-			!(wedding.getMusician().getService_type().getService().equals("musician") || wedding.getMusician().getService_type().getService().equals("Empty")) ||
-		   !(wedding.getPhotographer().getService_type().getService().equals("photographers") || wedding.getPhotographer().getService_type().getService().equals("Empty")) ||
-			!(wedding.getVenue().getService_type().getService().equals("venues") || wedding.getVenue().getService_type().getService().equals("Empty"))
-			) {return false;}
-		return true;
-			
 	}
 
 	

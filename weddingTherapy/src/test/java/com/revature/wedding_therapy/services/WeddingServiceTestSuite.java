@@ -33,51 +33,6 @@ public class WeddingServiceTestSuite {
 	}
 	
 	@Test
-	public void test_validWeddingServices_return_true() {
-		
-		Assert.assertTrue(sut.validWeddingServices(validWedding));
-		Weddings emptyWedding = new Weddings(0, "Empty", "Empty", 100.01, new Wedding_Services(0, "Empty", 0, new Service_Types(0, "Empty")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "Empty")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "Empty")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "Empty")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "Empty")));
-		Assert.assertTrue(sut.validWeddingServices(emptyWedding));
-	}
-	
-	public void test_validWeddingServices_return_false() {
-		Weddings rongcaterers = new Weddings(0, "Empty", "Empty", 100.01, new Wedding_Services(0, "Empty", 0, new Service_Types(0, "florists")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "florists")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "musician")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "photographers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "venues")));
-		Assert.assertFalse(sut.validWeddingServices(rongcaterers));
-		Weddings rongflorists = new Weddings(0, "Empty", "Empty", 100.01, new Wedding_Services(0, "Empty", 0, new Service_Types(0, "caterers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "musician")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "musician")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "photographers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "venues")));
-		Assert.assertFalse(sut.validWeddingServices(rongflorists));
-		Weddings rongmusician = new Weddings(0, "Empty", "Empty", 100.01, new Wedding_Services(0, "Empty", 0, new Service_Types(0, "caterers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "florists")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "photographers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "photographers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "venues")));
-		Assert.assertFalse(sut.validWeddingServices(rongcaterers));
-		Weddings rongphotographers = new Weddings(0, "Empty", "Empty", 100.01, new Wedding_Services(0, "Empty", 0, new Service_Types(0, "caterers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "florists")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "musician")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "venues")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "venues")));
-		Assert.assertFalse(sut.validWeddingServices(rongcaterers));
-		Weddings venues = new Weddings(0, "Empty", "Empty", 100.01, new Wedding_Services(0, "Empty", 0, new Service_Types(0, "caterers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "florists")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "musician")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "photographers")), 
-				new Wedding_Services(0, "Empty", 0, new Service_Types(0, "caterers")));
-		Assert.assertFalse(sut.validWeddingServices(rongcaterers));
-	}
-	
-	@Test
 	public void test_validId() {
 		Assert.assertTrue(sut.validId(5));
 		Assert.assertFalse(sut.validId(-1));
@@ -156,36 +111,5 @@ public class WeddingServiceTestSuite {
 		when(mockWeddingDAO.deleteWedding(IdDoesNotExist)).thenReturn(false);
 		Assert.assertFalse(sut.deleteWedding(IdDoesNotExist));
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
