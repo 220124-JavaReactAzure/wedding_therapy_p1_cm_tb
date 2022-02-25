@@ -18,7 +18,7 @@ public class Wedding_ServicesService {
 	
 	
 	public boolean createWedding_Services(Wedding_Services newWedding_Service) throws Wedding_ServiceNotNamedException {
-		if(newWedding_Service.getService_name() == null || newWedding_Service.getService_name().equals("")) {
+		if(newWedding_Service.getService_name() == null || newWedding_Service.getService_name().trim().equals("")) {
 			throw new Wedding_ServiceNotNamedException("Please Give This Wedding Service A Name!");
 		}
 		return wedding_servicesDAO.createNewWedding_Services(newWedding_Service);
