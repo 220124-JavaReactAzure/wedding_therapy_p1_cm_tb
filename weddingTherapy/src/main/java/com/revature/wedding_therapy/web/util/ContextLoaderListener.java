@@ -28,10 +28,6 @@ public class ContextLoaderListener implements ServletContextListener{
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.registerModule(new Hibernate5Module());
 		
-		EmployeeDAO employeeDAO = new EmployeeDAO();
-		EmployeeService employeeService = new EmployeeService(employeeDAO);
-		EmployeeServlet employeeServlet = new EmployeeServlet(mapper, employeeService);
-		
 		WeddingDAO weddingDAO = new WeddingDAO();
 		WeddingService weddingService = new WeddingService(weddingDAO);
 		WeddingServlet weddingServlet = new WeddingServlet(mapper, weddingService);
@@ -53,7 +49,6 @@ public class ContextLoaderListener implements ServletContextListener{
 		Meal_TypesServlet meal_TypesServlet = new Meal_TypesServlet(mapper, meal_TypesService);
 		
 		ServletContext context = sce.getServletContext();
-		context.addServlet("EmployeeServlet", employeeServlet).addMapping("/employee/*");
 		context.addServlet("UserServlet", usersServlet).addMapping("/users/*");
 		context.addServlet("WeddingServlet", weddingServlet).addMapping("/wedding/*");
 		context.addServlet("Wedding_ServicesServlet", wedServicesServlet).addMapping("/wedservice/*");
